@@ -21,7 +21,16 @@ if len(sys.argv)==5:
 			
 elif len(sys.argv)==2:
 
-	print("funcja chwilowo niedostepna- w trakcie budowy")
+	address = str(sys.argv[1])
+	
+	http_client = http_helper.HTTP_Helper("credentials.txt")
+	content=http_client.GetListOfWiFiBySSID(address)
+	
+	converter = convert.Convert()
+	listOfWiFiAddresses = converter.JsonListOfWiFiToListOfWiFiAddresses(content)
+	
+	for element in listOfWiFiAddresses:
+		print(element)
 	
 else:
 	print("podano nieprawidlowa liczbe parametrow")

@@ -6,9 +6,9 @@ class HTTP_Helper:
 		self.authorization = f.read()
 		
 	def Get(self,url):
-		req = urllib.request.Request(url)
-		
+		req = urllib.request.Request(url)		
 		req.add_header('Authorization',self.authorization)
+
 		contents = urllib.request.urlopen(req)
 		return contents.read().decode('UTF-8')
 		
@@ -16,4 +16,7 @@ class HTTP_Helper:
 		url="https://api.wigle.net/api/v2/network/search?onlymine=false&first=0&latrange1="
 		url=url+str(latrange1)+"&latrange2="+str(latrange2)+"&longrange1="+str(longrange1)+"&longrange2="+str(longrange2)+"&freenet=false&paynet=false"
 		return self.Get(url)
-		
+	
+	def GetListOfWiFiBySSID (self,ssid):
+		url = "https://api.wigle.net/api/v2/network/search?onlymine=false&first=0&freenet=false&paynet=false&ssid=" + str(ssid)
+		return self.Get(url)
