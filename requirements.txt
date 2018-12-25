@@ -1,3 +1,2 @@
-urllib >= 2.7.15
-requests >= 2.21.0
-json >= 2.7.15
+urllib3
+requests
